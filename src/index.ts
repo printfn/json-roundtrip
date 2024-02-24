@@ -1,10 +1,16 @@
+export type JsonObject = { [key in string]?: JsonCompatible } & {
+	[key in symbol | number]: never;
+};
+
+export type JsonArray = JsonCompatible[];
+
 export type JsonCompatible =
 	| null
 	| string
 	| number
 	| boolean
-	| JsonCompatible[]
-	| { [key in string]?: JsonCompatible };
+	| JsonArray
+	| JsonObject;
 
 /// Equivalent to `JSON.parse(JSON.stringify(value))` but with a
 /// type-safe signature.

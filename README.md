@@ -10,11 +10,34 @@ const value1 = jsonRoundtrip({ a: 1 });
 const value2 = jsonRoundtrip('Hello, world');
 
 // @ts-expect-error
-const error = jsonRoundtrip({ a: 5, double: n => n * 2 });
+const error1 = jsonRoundtrip({ a: 5, double: n => n * 2 });
+
+// @ts-expect-error
+const error2 = jsonRoundtrip({ [Symbol('foo')]: 'bar' });
+```
+
+`json-roundtrip` exports a `JsonCompatible` type that can be used to typecheck
+values:
+
+```typescript
+import { jsonRoundtrip, JsonCompatible } from 'json-roundtrip';
+
+const myValue: JsonCompatible = {
+	a: 1,
+	b: 'Hello, world',
+	c: null,
+	d: [1, 2, 'three'],
+	e: {
+		f: true,
+		g: 0.5,
+	},
+};
+
+jsonRoundtrip(myValue);
 ```
 
 Note that `interface` values are not supported as they may have additional
-unserializable properties.
+unserializable properties:
 
 ```typescript
 interface MyProps {
@@ -30,7 +53,7 @@ function MyComponent(props: MyProps) {
 }
 ```
 
-Instead, use `type` to define the shape of the value.
+Instead, use `type` to define the shape of the value:
 
 ```typescript
 type MyProps = {
