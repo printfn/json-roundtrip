@@ -1,0 +1,41 @@
+{
+	"name": "json-roundtrip",
+	"version": "1.0.2",
+	"description": "",
+	"type": "module",
+	"exports": {
+		".": "./dist/index.js"
+	},
+	"types": "dist/index.d.ts",
+	"files": [
+		"/dist",
+		"/src"
+	],
+	"scripts": {
+		"build": "tsc",
+		"format": "prettier --write ."
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/printfn/json-roundtrip.git"
+	},
+	"keywords": [
+		"json",
+		"typescript"
+	],
+	"author": "printfn",
+	"license": "CC0-1.0",
+	"bugs": {
+		"url": "https://github.com/printfn/json-roundtrip/issues"
+	},
+	"homepage": "https://github.com/printfn/json-roundtrip#readme",
+	"devDependencies": {
+		"prettier": "^3.2.5",
+		"typescript": "^5.3.3"
+	},
+	"prettier": {
+		"useTabs": true,
+		"singleQuote": true,
+		"arrowParens": "avoid"
+	}
+}
